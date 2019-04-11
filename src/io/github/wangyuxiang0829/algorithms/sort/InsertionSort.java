@@ -47,8 +47,9 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * Brief: Set the flag useRecursion true, so the sort
-     * method will sort the array recursively.
+     * <p>Brief: Set the flag useRecursion true, so the sort
+     * method will sort the array recursively. If not set this
+     * flag true, the default behavior will use the iterativeInsertionSort.
      * @return this object itself
      */
     public InsertionSort<T> setUseRecursion() {
@@ -73,7 +74,7 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
             recursiveInsertionSort(n - 1);
             int i = n - 1;
             T key = A[n];
-            while (i > -1 && A[i].compareTo(A[n]) > 0) {
+            while (i >= 0 && A[i].compareTo(key) > 0) {
                 A[i + 1] = A[i];
                 i--;
             }
@@ -100,7 +101,7 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
         for (int j = 1; j < A.length; j++) {
             T key = A[j];
             int i = j - 1;
-            while (i > -1 && A[i].compareTo(key) > 0) {
+            while (i >= 0 && A[i].compareTo(key) > 0) {
                 A[i + 1] = A[i];
                 i--;
             }
@@ -114,7 +115,7 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
      * <p>Brief: Implement the abstract method in the interface Sort.
-     * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+     * @see Sort#sort()
      * @return the sorted array
      */
     public T[] sort() {
