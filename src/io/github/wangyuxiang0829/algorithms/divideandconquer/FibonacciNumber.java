@@ -2,9 +2,38 @@ package io.github.wangyuxiang0829.algorithms.divideandconquer;
 
 import java.util.Arrays;
 
+/**
+ * <p>Brief: Compute the nth Fibonacci number in Fibonacci sequence.
+ * <p>Explanation: Fibonacci numbers is defined by the following recurrence:
+ * <blockquote>
+ *     <p>F0 = 0,
+ *     <p>F1 = 1,
+ *     <p>Fn = Fn-1 + Fn-2 (n >= 2).
+ *     <p>Example: The Fibonacci sequence is just like this:
+ *     0, 1, 1, 2, 3, 5, 8, ...
+ * </blockquote>
+ * <p>Input: A non-negative integer n >= 0.
+ * <p>Output: The nth Fibonacci number Fn.
+ */
 public class FibonacciNumber {
+
+    /**
+     * <p>Brief: The recursive version for computing the nth Fibonacci number.
+     * <p>Algorithm: Divide and Conquer.
+     * <blockquote>
+     *     <p>Divide: Divide the problem of size n into two sub-problem whose
+     *     size is (n - 1) and (n - 2).
+     *     <p>Conquer: Recursively solve each sub-problem, and if the problem
+     *     size n <= 1, we just solve it.
+     *     <p>Combine: Combine the solutions of two sub-problem by adding them
+     *     together and get the solution of the original problem.
+     * </blockquote>
+     * <p>Running Time: T(n) = Omega(Phi ^ n).
+     * @param n the nth Fibonacci number to be computed
+     * @return the nth Fibonacci number
+     */
     @Deprecated
-    public static int recursiveAlgorithm(int n) {
+    public static int recursiveAlgorithm(final int n) {
         if (n < 0)
             throw new IllegalArgumentException("n must be non-negative");
         if (n == 0)
@@ -15,7 +44,16 @@ public class FibonacciNumber {
             return recursiveAlgorithm(n - 1) + recursiveAlgorithm(n - 2);
     }
 
-    public static int bottomUpAlgorithm(int n) {
+    /**
+     * <p>Brief: The dynamic programming version for computing the nth Fibonacci number.
+     * <p>Algorithm: Rather than saying it is dynamic programming, we can symbolically
+     * say it is bottom-up algorithm. we just compute the number from 0 to n, just like
+     * bottom-up.
+     * <p>Running Time: Theta(n).
+     * @param n the nth Fibonacci number to be computed
+     * @return the nth Fibonacci number
+     */
+    public static int bottomUpAlgorithm(final int n) {
         if (n < 0)
             throw new IllegalArgumentException("n must be non-negative");
         if (n == 0)
@@ -31,75 +69,93 @@ public class FibonacciNumber {
         }
     }
 
-    private static class TwoByTwoMatrix {
-        private int[][] twoByTwoMatrix = new int[2][2];
+    /**
+     * <p>Brief: The recursive squaring version for computing the nth Fibonacci number.
+     * <p>Theorem:
+     * <blockquote>
+     *     <p> [[F(n+1), F(n)  ],       =>       ([[1, 1], ) ^ n
+     *     <p> [F(n)  , F(n-1)]]        =>       ( [1, 0]] )
+     * </blockquote>
+     * <p>Algorithm: The same as {@link PoweringANumber#recursiveSquaring(double, int)}, the
+     * only difference is that one is powering a number and another is powering a two-by-two
+     * matrix, but they all cost constant time.
+     * <p>Running Time: Theta(lg(n)).
+     * @param n the nth Fibonacci number to be computed
+     * @return the nth Fibonacci number
+     */
+    public static int recursiveSquaring(final int n) {
 
-        private TwoByTwoMatrix(int a00, int a01, int a10, int a11) {
-            twoByTwoMatrix[0][0] = a00;
-            twoByTwoMatrix[0][1] = a01;
-            twoByTwoMatrix[1][0] = a10;
-            twoByTwoMatrix[1][1] = a11;
-        }
+        class TwoByTwoMatrix {
 
-        private TwoByTwoMatrix() {
-            twoByTwoMatrix[0][0] = 1;
-            twoByTwoMatrix[0][1] = 1;
-            twoByTwoMatrix[1][0] = 1;
-            twoByTwoMatrix[1][1] = 0;
-        }
+            private int[][] matrix = new int[2][2];
 
-        private TwoByTwoMatrix matrixMultiplication(TwoByTwoMatrix matrix) {
-            TwoByTwoMatrix newMatrix = new TwoByTwoMatrix(0, 0, 0, 0);
-            newMatrix.twoByTwoMatrix[0][0] = twoByTwoMatrix[0][0] * matrix.twoByTwoMatrix[0][0] + twoByTwoMatrix[0][1] * matrix.twoByTwoMatrix[1][0];
-            newMatrix.twoByTwoMatrix[0][1] = twoByTwoMatrix[0][0] * matrix.twoByTwoMatrix[0][1] + twoByTwoMatrix[0][1] * matrix.twoByTwoMatrix[1][1];
-            newMatrix.twoByTwoMatrix[1][0] = twoByTwoMatrix[1][0] * matrix.twoByTwoMatrix[0][0] + twoByTwoMatrix[1][1] * matrix.twoByTwoMatrix[0][1];
-            newMatrix.twoByTwoMatrix[1][1] = twoByTwoMatrix[1][0] * matrix.twoByTwoMatrix[0][1] + twoByTwoMatrix[1][1] * matrix.twoByTwoMatrix[1][1];
-            return newMatrix;
-        }
-
-        public String toString() {
-            return Arrays.toString(twoByTwoMatrix);
-        }
-
-        private int[][] getTwoByTwoMatrix() {
-            return twoByTwoMatrix;
-        }
-
-    }
-
-    private static class PoweringAMatrix {
-        private TwoByTwoMatrix x;
-
-        private PoweringAMatrix(TwoByTwoMatrix x) {
-            this.x = x;
-        }
-
-        private TwoByTwoMatrix recursiveSquaring(int n) {
-            if (n < 1)
-                throw new IllegalArgumentException("n must not less than 1");
-            if (n == 1)
-                return x;
-            if (n % 2 == 0) {
-                TwoByTwoMatrix tmp = recursiveSquaring(n / 2);
-                return tmp.matrixMultiplication(tmp);
+            private TwoByTwoMatrix() {
+                matrix[0][0] = 1;
+                matrix[0][1] = 1;
+                matrix[1][0] = 1;
+                matrix[1][1] = 0;
             }
-            else {
-                TwoByTwoMatrix tmp = recursiveSquaring((n - 1) / 2);
-                return tmp.matrixMultiplication(tmp).matrixMultiplication(x);
+
+            private TwoByTwoMatrix multiplication(TwoByTwoMatrix another) {
+                TwoByTwoMatrix answer = new TwoByTwoMatrix();
+                answer.matrix[0][0] = this.matrix[0][0] * another.matrix[0][0] + this.matrix[0][1] * another.matrix[1][0];
+                answer.matrix[0][1] = this.matrix[0][0] * another.matrix[0][1] + this.matrix[0][1] * another.matrix[1][1];
+                answer.matrix[1][0] = this.matrix[1][0] * another.matrix[0][0] + this.matrix[1][1] * another.matrix[1][0];
+                answer.matrix[1][1] = this.matrix[1][0] * another.matrix[0][1] + this.matrix[1][1] * another.matrix[1][1];
+                return answer;
             }
+
+            public String toString() {
+                return "[" + Arrays.toString(matrix[0]) + ",\n " + Arrays.toString(matrix[1]) + "]";
+            }
+
+            private TwoByTwoMatrix powering(int x) {
+                if (x < 1)
+                    throw new IllegalArgumentException("the power of matrix must not less than 1");
+                else if (x == 1) {
+                    System.out.println("power of 1:\n" + this);
+                    return this;
+                }
+                else {
+                    if (x % 2 == 0) {
+                        TwoByTwoMatrix tmp = powering(x / 2);
+                        TwoByTwoMatrix answer = tmp.multiplication(tmp);
+                        System.out.println("power of " + x + ":\n" + answer);
+                        return answer;
+                    }
+                    else {
+                        TwoByTwoMatrix tmp = powering((x - 1) / 2);
+                        TwoByTwoMatrix anotherTmp = tmp.multiplication(tmp);
+                        System.out.println("power of " + (x - 1) + ":\n" + anotherTmp);
+                        TwoByTwoMatrix answer = anotherTmp.multiplication(this);
+                        System.out.println("power of " + x + ":\n" + answer);
+                        return answer;
+                    }
+                }
+            }
+
+            private TwoByTwoMatrix powering() {
+                return powering(n);
+            }
+
+            private int[][] getMatrix() {
+                return matrix;
+            }
+
         }
 
-    }
 
-    public static int recursiveSquaring(int n) {
+
+
         if (n < 0)
             throw new IllegalArgumentException("n must be non-negative");
-        if (n == 0)
+        else if (n == 0)
             return 0;
         else {
-            int[][] ints = new PoweringAMatrix(new TwoByTwoMatrix()).recursiveSquaring(n).getTwoByTwoMatrix();
-            return ints[0][1];
+            int[][] ints = new TwoByTwoMatrix().powering().getMatrix();
+            return ints[1][0];
         }
+
     }
 
 }
