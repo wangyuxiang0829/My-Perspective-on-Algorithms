@@ -15,18 +15,40 @@ package io.github.wangyuxiang0829.algorithms.chap02;
 public class LinearSearch {
 
     /**
-     * Brief: Scan the array 'A' to search an element 'v'.
+     * Brief: The iterative version of linear search.
+     * Explanation: Scan the array 'A' to search an element 'v'.
      * @param A the array to be searched on
      * @param v the element to be searched
      * @param <T> the type of the array to be searched on
      * @return the index i such that A[i] == v, or return
      * 'null' if the array A don't contains element v
      */
-    public static <T extends Comparable<T>> Integer linearSearch(T[] A, T v) {
+    public static <T extends Comparable<T>> Integer iterativeLinearSearch(T[] A, T v) {
         for (int i = 0; i < A.length; i++)
             if (A[i].compareTo(v) == 0)
                 return i;
         return null;
+    }
+
+    private static <T extends Comparable<T>> Integer recursiveLinearSearch(T[] A, T v, int n) {
+        if (n < 0)
+            return null;
+        if (A[n].compareTo(v) == 0)
+            return n;
+        else
+            return recursiveLinearSearch(A, v, n -1);
+    }
+
+    /**
+     * Brief: The recursive version of linear search.
+     * @param A the array to be searched on
+     * @param v the element to be searched
+     * @param <T> the type of the array to be searched on
+     * @return the index i such that A[i] == v, or return
+     * 'null' if the array A don't contains element v
+     */
+    public static <T extends Comparable<T>> Integer recursiveLinearSearch(T[] A, T v) {
+        return recursiveLinearSearch(A, v, A.length - 1);
     }
 
 }
