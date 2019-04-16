@@ -78,7 +78,7 @@ public class FibonacciNumber {
      * </blockquote>
      * <p>Algorithm: The same as {@link PoweringANumber#recursiveSquaring(double, int)}, the
      * only difference is that one is powering a number and another is powering a two-by-two
-     * matrix, but they all cost constant time.
+     * parentMatrix, but they all cost constant time.
      * <p>Running Time: Theta(lg(n)).
      * @param n the nth Fibonacci number to be computed
      * @return the nth Fibonacci number
@@ -111,7 +111,7 @@ public class FibonacciNumber {
 
             private TwoByTwoMatrix powering(int x) {
                 if (x < 1)
-                    throw new IllegalArgumentException("the power of matrix must not less than 1");
+                    throw new IllegalArgumentException("the power of parentMatrix must not less than 1");
                 else if (x == 1) {
                     System.out.println("power of 1:\n" + this);
                     return this;
