@@ -5,13 +5,8 @@ import java.lang.reflect.Array;
 /**
  * <p>Brief: MergeSort implements the interface {@link
  * io.github.wangyuxiang0829.algorithms.sort.Sort Sort}
- * and can sort an array of any {@link
- * java.lang.Comparable Comparable} type T.
- * <p>Input: A sequence of n numbers A = [a1, a2, ..., an].
- * <p>Output: A permutation(reordering) A' = [a1', a2', ..., an']
- * of the input sequence such that a1' <= a2' <= ... <= an'.
- * <p>Example: Input a sequence [1, 3, 2, 5, 4, 7, 9, 8], and the
- * output will be [1, 2, 3, 4, 5, 7, 8, 9].
+ * and can sort an array of any {@link java.lang.Comparable
+ * Comparable} type T.
  * <p>Algorithm(divide-and-conquer):
  * <blockquote>
  *     <p>Divide: Divide the n-element sequence to be sorted into two
@@ -154,5 +149,12 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
         return A;
     }
+
+
+    /*
+    public static void main(String[] args) {
+        Sort<Integer> sort = new MergeSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6}, Integer.class);
+        System.out.println(java.util.Arrays.toString(sort.sort()));
+    }*/
 
 }

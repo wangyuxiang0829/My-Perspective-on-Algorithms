@@ -8,11 +8,6 @@ import io.github.wangyuxiang0829.algorithms.sort.Sort;
  * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
  * can sort an array of any {@link java.lang.Comparable
  * Comparable} type T.
- * <p>Input: A sequence of n numbers A = [a1, a2, ..., an].
- * <p>Output: A permutation(reordering) A' = [a1', a2', ..., an']
- * of the input sequence such that a1' <= a2' <= ... <= an'.
- * <p>Example: Input a sequence [1, 3, 2, 5, 4, 7, 9, 8], and the
- * output will be [1, 2, 3, 4, 5, 7, 8, 9].
  * <p>Algorithms: We find the smallest element in the input sequence
  * via compare and swap continuously from an to a1, and so a1 will
  * be the smallest element. Then find the second smallest element
@@ -79,7 +74,16 @@ public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
                     if (A[j].compareTo(A[j - 1]) < 0)
                         exchange(j - 1, j);
         }
+
         return A;
     }
+
+
+
+    /*
+    public static void main(String[] args) {
+        Sort<Integer> sort = new BubbleSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        System.out.println(java.util.Arrays.toString(sort.sort()));
+    }*/
 
 }
