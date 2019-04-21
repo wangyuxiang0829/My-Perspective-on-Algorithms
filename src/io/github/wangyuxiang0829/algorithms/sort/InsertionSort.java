@@ -5,11 +5,6 @@ package io.github.wangyuxiang0829.algorithms.sort;
  * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
  * can sort an array of any {@link java.lang.Comparable
  *  Comparable} type T.
- * <p>Input: A sequence of n numbers A = [a1, a2, ..., an].
- * <p>Output: A permutation(reordering) A' = [a1', a2', ..., an']
- * of the input sequence such that a1' <= a2' <= ... <= an'.
- * <p>Example: Input a sequence [1, 3, 2, 5, 4, 7, 9, 8], and the
- * output will be [1, 2, 3, 4, 5, 7, 8, 9].
  * <p>Algorithm: Insertion sort just like we sort a hand of playing
  * cards, we start with an empty left hand and the cards face down
  * on the table, we then remove one card at a time from the table
@@ -20,8 +15,11 @@ package io.github.wangyuxiang0829.algorithms.sort;
  * <p>Loop invariant: At the start of each for loop, the subarray
  * A[1, ..., j - 1] consists of the elements originally in
  * A[1, ..., j - 1], but in sorted order.
- * <p>Running time: Theta(n ^ 2) for the worst case, and Theta(n)
- * for the best case.
+ * <p>Running time:
+ * <blockquote>
+ *     <p>Worst case: T(n) = Theta(n ^ 2).
+ *     <p>Best case: T(n) = Theta(n).
+ * </blockquote>
  * @see io.github.wangyuxiang0829.algorithms.sort.Sort
  * @see io.github.wangyuxiang0829.algorithms.sort.MergeSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort

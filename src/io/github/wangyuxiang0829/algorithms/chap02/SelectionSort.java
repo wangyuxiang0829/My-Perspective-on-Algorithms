@@ -8,11 +8,6 @@ import io.github.wangyuxiang0829.algorithms.sort.Sort;
  * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
  * can sort an array of any {@link java.lang.Comparable
  * Comparable} type T.
- * <p>Input: A sequence of n numbers A = [a1, a2, ..., an].
- * <p>Output: A permutation(reordering) A' = [a1', a2', ..., an']
- * of the input sequence such that a1' <= a2' <= ... <= an'.
- * <p>Example: Input a sequence [1, 3, 2, 5, 4, 7, 9, 8], and the
- * output will be [1, 2, 3, 4, 5, 7, 8, 9].
  * <p>Algorithm: At first, we find the smallest element of A, and
  * exchanging it with the element in A[1]. Then find the second
  * smallest element of A, and exchanging it with A[2]. Continue
@@ -21,7 +16,7 @@ import io.github.wangyuxiang0829.algorithms.sort.Sort;
  * subarray A[1, 2, ..., i - 1] always consists of the i - 1
  * smallest elements in the array A, and the subarray is in
  * the sorted order.
- * <p>Running time: Theta(n ^ 2) for all cases.
+ * <p>Running time: All cases: T(n) = Theta(n ^ 2)
  * @see io.github.wangyuxiang0829.algorithms.sort.Sort
  * @see io.github.wangyuxiang0829.algorithms.sort.MergeSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
@@ -34,8 +29,8 @@ public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * Brief: Constructor.
-     * Explanation: Construct the instance of class SelectionSort.
+     * <p>Brief: Constructor.
+     * <p>Explanation: Construct the instance of class SelectionSort.
      * @param A an array of type T
      */
     public SelectionSort(T[] A) {
@@ -54,7 +49,7 @@ public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * <p>Brief: Implement the abstract method in the interface Sort.
+     * <p>Brief: Implement the abstract method in {@link Sort Sort}.
      * @see io.github.wangyuxiang0829.algorithms.sort.Sort
      * @return the sorted array
      */

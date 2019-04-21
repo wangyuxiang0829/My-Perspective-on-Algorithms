@@ -78,6 +78,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 
 
 
+    @Override
     public T[] sort() {
         quickSort(0, A.length - 1);
         return A;

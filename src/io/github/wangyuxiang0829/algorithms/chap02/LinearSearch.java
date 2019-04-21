@@ -9,14 +9,18 @@ package io.github.wangyuxiang0829.algorithms.chap02;
  * <p>Loop invariant: the subarray A[1, 2, ..., i - 1]. At the start of
  * each for loop, the subarray A[1, 2, ..., i - 1] always don't have the
  * value v.
- * <p>Runtime: Theta(n) for the worst time.
+ * <p>Runtime:
+ * <blockquote>
+ *     <p>Worst case: T(n) = Theta(n)
+ *     <p>Best case: T(n) = Theta(1)
+ * </blockquote>
  * @see io.github.wangyuxiang0829.algorithms.chap02.BinarySearch
  */
 public class LinearSearch {
 
     /**
-     * Brief: The iterative version of linear search.
-     * Explanation: Scan the array 'A' to search an element 'v'.
+     * <p>Brief: The iterative version of linear search.
+     * <p>Explanation: Scan the array 'A' to search an element 'v'.
      * @param A the array to be searched on
      * @param v the element to be searched
      * @param <T> the type of the array to be searched on
@@ -40,7 +44,7 @@ public class LinearSearch {
     }
 
     /**
-     * Brief: The recursive version of linear search.
+     * <p>Brief: The recursive version of linear search.
      * @param A the array to be searched on
      * @param v the element to be searched
      * @param <T> the type of the array to be searched on
@@ -50,5 +54,11 @@ public class LinearSearch {
     public static <T extends Comparable<T>> Integer recursiveLinearSearch(T[] A, T v) {
         return recursiveLinearSearch(A, v, A.length - 1);
     }
+
+    /*
+    public static void main(String[] args) {
+        System.out.println(recursiveLinearSearch(new Integer[]{1, 2, 3, 4}, 0));
+        System.out.println(iterativeLinearSearch(new Integer[]{1, 2, 3, 4}, 0));
+    }*/
 
 }

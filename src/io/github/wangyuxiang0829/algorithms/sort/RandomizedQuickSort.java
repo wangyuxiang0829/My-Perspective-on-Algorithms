@@ -4,6 +4,18 @@ import io.github.wangyuxiang0829.algorithms.divideandconquer.QuickSort;
 
 import java.util.Random;
 
+
+/**
+ * <p>Brief: A randomized version of {@link QuickSort QuickSort}.
+ * <p>Explanation: Instead of always using A[p] as the pivot, we will select a randomly
+ * chosen element from the subarray A[p ... r].
+ * <p>Running Time:
+ * <blockquote>
+ *     <p>Expected running rime: E[T(n)] = Theta(nlg(n)).
+ *     <p>Worst case running time: T(n) = Theta(n ^ 2).
+ * </blockquote>
+ * @param <T> the type of the elements to be sorted
+ */
 public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
     public RandomizedQuickSort(T[] A) {
@@ -13,7 +25,7 @@ public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
 
 
-    private static int random(int i, int j) {
+    protected static int random(int i, int j) {
         Random random = new Random();
 
         return random.nextInt(j - i + 1) + i;
@@ -22,12 +34,10 @@ public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
 
 
-    protected int partition(int p, int r) {
-        int random = random(p, r);
+    protected int randomizedPartition(int p, int r) {
+        exchange(random(p, r), p);
 
-        super.exchange(random, p);
-
-        return super.partition(p, r);
+        return partition(p, r);
     }
 
 
@@ -35,7 +45,7 @@ public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
     private void randomizedQuickSort(int p, int r) {
         if (p < r) {
-            int q = partition(p, r);
+            int q = randomizedPartition(p, r);
             randomizedQuickSort(p, q - 1);
             randomizedQuickSort(q + 1, r);
         }
@@ -44,6 +54,7 @@ public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
 
 
+    @Override
     public T[] sort() {
         randomizedQuickSort(0, A.length - 1);
         return A;

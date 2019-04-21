@@ -54,7 +54,7 @@ public class AddTwoBinary {
 
         int[] C = new int[A.length + 1];
         int carry = 0;
-        for (int i = A.length - 1; i > -1; i--) {
+        for (int i = A.length - 1; i >= 0; i--) {
             C[i + 1] = (A[i] + B[i] + carry) % 2;
             carry = (A[i] + B[i] + carry) / 2;
         }
@@ -62,5 +62,10 @@ public class AddTwoBinary {
 
         return C;
     }
+
+    /*
+    public static void main(String[] args) {
+        System.out.println(java.util.Arrays.toString(addTwoBinary(new int[]{1, 1, 1, 1}, new int[]{1, 1, 0, 0})));
+    }*/
 
 }

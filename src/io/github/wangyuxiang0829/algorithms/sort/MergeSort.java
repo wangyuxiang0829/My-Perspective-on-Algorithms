@@ -3,10 +3,8 @@ package io.github.wangyuxiang0829.algorithms.sort;
 import java.lang.reflect.Array;
 
 /**
- * <p>Brief: MergeSort implements the interface {@link
- * io.github.wangyuxiang0829.algorithms.sort.Sort Sort}
- * and can sort an array of any {@link java.lang.Comparable
- * Comparable} type T.
+ * <p>Brief: MergeSort implements the interface {@link io.github.wangyuxiang0829.algorithms.sort.Sort
+ * Sort} and can sort an array of any {@link java.lang.Comparable Comparable} type T.
  * <p>Algorithm(divide-and-conquer):
  * <blockquote>
  *     <p>Divide: Divide the n-element sequence to be sorted into two
@@ -16,7 +14,7 @@ import java.lang.reflect.Array;
  *     <p>Combine: Merge the two sorted sub sequences to produce the
  *     sorted answer.
  * </blockquote>
- * <p>Runtime: Theta(n*lg(n)) for the worst case.
+ * <p>Runtime: All cases: T(n) = Theta(nlg(n))
  * @see io.github.wangyuxiang0829.algorithms.sort.Sort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
  * @see io.github.wangyuxiang0829.algorithms.sort.InsertionSort

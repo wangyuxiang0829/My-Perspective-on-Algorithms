@@ -14,6 +14,10 @@ package io.github.wangyuxiang0829.algorithms.sort;
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
  * @see io.github.wangyuxiang0829.algorithms.sort.InsertionSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.SelectionSort
+ * @see io.github.wangyuxiang0829.algorithms.sort.RandomizedQuickSort
+ * @see io.github.wangyuxiang0829.algorithms.chap07.InsertionQuickSort
+ * @see io.github.wangyuxiang0829.algorithms.divideandconquer.QuickSort
+ * @see io.github.wangyuxiang0829.algorithms.chap07.ImprovedRandomizedQuickSort
  * @param <T> the type of the elements to be sorted
  */
 public interface Sort<T extends Comparable<T>> {
