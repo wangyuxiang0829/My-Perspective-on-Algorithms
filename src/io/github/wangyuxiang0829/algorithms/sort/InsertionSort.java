@@ -1,9 +1,8 @@
 package io.github.wangyuxiang0829.algorithms.sort;
 
 /**
- * <p>Brief: InsertionSort implements the interface {@link
- * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
- * can sort an array of any {@link java.lang.Comparable
+ * <p>Brief: InsertionSort implements the interface {@link ComparisonSort
+ * ComparisonSort} and can sort an array of any {@link java.lang.Comparable
  *  Comparable} type T.
  * <p>Algorithm: Insertion sort just like we sort a hand of playing
  * cards, we start with an empty left hand and the cards face down
@@ -17,16 +16,17 @@ package io.github.wangyuxiang0829.algorithms.sort;
  * A[1, ..., j - 1], but in sorted order.
  * <p>Running time:
  * <blockquote>
- *     <p>Worst case: T(n) = Theta(n ^ 2).
- *     <p>Best case: T(n) = Theta(n).
+ *     <p>Worst case: T(n) = Theta(n ^ 2)
+ *     <p>Best case: T(n) = Theta(n)
  * </blockquote>
- * @see io.github.wangyuxiang0829.algorithms.sort.Sort
- * @see io.github.wangyuxiang0829.algorithms.sort.MergeSort
+ * @see HeapSort
+ * @see MergeSort
+ * @see RandomizedQuickSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.SelectionSort
  * @param <T> the type of the elements to be sorted
  */
-public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
+public class InsertionSort<T extends Comparable<T>> implements ComparisonSort<T> {
     private T[] A;
     private boolean isSorted = false;
     private boolean useRecursion = false;
@@ -112,8 +112,8 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * <p>Brief: Implement the abstract method in the interface Sort.
-     * @see Sort#sort()
+     * <p>Brief: Implement the abstract method in the interface ComparisonSort.
+     * @see ComparisonSort#sort()
      * @return the sorted array
      */
     public T[] sort() {
@@ -130,5 +130,13 @@ public class InsertionSort<T extends Comparable<T>> implements Sort<T> {
 
         return A;
     }
+
+    /*
+    public static void main(String[] args) {
+        Sort<Integer> sort1 = new InsertionSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        System.out.println(java.util.Arrays.toString(sort1.sort()));
+        Sort<Integer> sort2 = new InsertionSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6}).setUseRecursion();
+        System.out.println(java.util.Arrays.toString(sort2.sort()));
+    }*/
 
 }

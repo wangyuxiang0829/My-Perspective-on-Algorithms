@@ -1,9 +1,7 @@
 package io.github.wangyuxiang0829.algorithms.sort;
 
 import io.github.wangyuxiang0829.algorithms.divideandconquer.QuickSort;
-
 import java.util.Random;
-
 
 /**
  * <p>Brief: A randomized version of {@link QuickSort QuickSort}.
@@ -11,8 +9,8 @@ import java.util.Random;
  * chosen element from the subarray A[p ... r].
  * <p>Running Time:
  * <blockquote>
- *     <p>Expected running rime: E[T(n)] = Theta(nlg(n)).
- *     <p>Worst case running time: T(n) = Theta(n ^ 2).
+ *     <p>Expected running rime: E[T(n)] = Theta(nlg(n))
+ *     <p>Worst case running time: T(n) = Theta(n ^ 2)
  * </blockquote>
  * @param <T> the type of the elements to be sorted
  */

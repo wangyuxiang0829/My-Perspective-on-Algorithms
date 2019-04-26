@@ -44,7 +44,7 @@ public class InsertionQuickSort<T extends Comparable<T>> extends RandomizedQuick
 
     /*
     public static void main(String[] args) {
-        Sort<Integer> sort = new InsertionQuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        ComparisonSort<Integer> sort = new InsertionQuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
         System.out.println(java.util.Arrays.toString(sort.sort()));
 
     }*/

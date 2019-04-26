@@ -1,11 +1,11 @@
 package io.github.wangyuxiang0829.algorithms.chap02;
 
-import io.github.wangyuxiang0829.algorithms.sort.Sort;
+import io.github.wangyuxiang0829.algorithms.sort.ComparisonSort;
 
 /**
  * <p>2.2-2
  * <p>Brief: SelectionSort implements the interface {@link
- * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
+ * ComparisonSort ComparisonSort} and
  * can sort an array of any {@link java.lang.Comparable
  * Comparable} type T.
  * <p>Algorithm: At first, we find the smallest element of A, and
@@ -17,13 +17,13 @@ import io.github.wangyuxiang0829.algorithms.sort.Sort;
  * smallest elements in the array A, and the subarray is in
  * the sorted order.
  * <p>Running time: All cases: T(n) = Theta(n ^ 2)
- * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+ * @see ComparisonSort
  * @see io.github.wangyuxiang0829.algorithms.sort.MergeSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
  * @see io.github.wangyuxiang0829.algorithms.sort.InsertionSort
  * @param <T> the type of the elements to be sorted
  */
-public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
+public class SelectionSort<T extends Comparable<T>> implements ComparisonSort<T> {
     private T[] A;
     private boolean isSorted = false;
 
@@ -49,8 +49,8 @@ public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * <p>Brief: Implement the abstract method in {@link Sort Sort}.
-     * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+     * <p>Brief: Implement the abstract method in {@link ComparisonSort ComparisonSort}.
+     * @see ComparisonSort
      * @return the sorted array
      */
     public T[] sort() {

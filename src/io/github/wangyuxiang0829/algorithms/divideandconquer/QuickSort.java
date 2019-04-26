@@ -1,10 +1,10 @@
 package io.github.wangyuxiang0829.algorithms.divideandconquer;
 
-import io.github.wangyuxiang0829.algorithms.sort.Sort;
+import io.github.wangyuxiang0829.algorithms.sort.ComparisonSort;
 
 /**
  * <p>Brief: QuickSort implements the interface {@link
- * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
+ * ComparisonSort ComparisonSort} and
  * can sort an array of any {@link java.lang.Comparable Comparable}
  * type T.
  * <p>Algorithm: Divide and Conquer.
@@ -25,7 +25,7 @@ import io.github.wangyuxiang0829.algorithms.sort.Sort;
  * </blockquote>
  * @param <T> the type of the elements to be sorted
  */
-public class QuickSort<T extends Comparable<T>> implements Sort<T> {
+public class QuickSort<T extends Comparable<T>> implements ComparisonSort<T> {
     protected T[] A;
 
 
@@ -90,7 +90,7 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
 
     /*
     public static void main(String[] args) {
-        Sort<Integer> sort = new QuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        ComparisonSort<Integer> sort = new QuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
         System.out.println(java.util.Arrays.toString(sort.sort()));
     }*/
 

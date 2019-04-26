@@ -1,27 +1,25 @@
 package io.github.wangyuxiang0829.algorithms.chap02;
 
-import io.github.wangyuxiang0829.algorithms.sort.Sort;
+import io.github.wangyuxiang0829.algorithms.sort.ComparisonSort;
+
 
 /**
  * <p>2-2
- * <p>Brief: BubbleSort implements the interface {@link
- * io.github.wangyuxiang0829.algorithms.sort.Sort Sort} and
- * can sort an array of any {@link java.lang.Comparable
- * Comparable} type T.
- * <p>Algorithms: We find the smallest element in the input sequence
- * via compare and swap continuously from an to a1, and so a1 will
- * be the smallest element. Then find the second smallest element
- * and swap it to a2. And repeat this operation n - 1 times, so at
- * last, an will automatically be largest element. So, the sequence
+ * <p>Brief: BubbleSort implements the interface {@link ComparisonSort ComparisonSort}
+ * and can sort an array of any {@link java.lang.Comparable Comparable} type T.
+ * <p>Algorithms: We find the smallest element in the input sequence via compare
+ * and swap continuously from an to a1, and so a1 will be the smallest element.
+ * Then find the second smallest element and swap it to a2. And repeat this operation
+ * n - 1 times, so at last, an will automatically be largest element. So, the sequence
  * is sorted.
- * <p>Runtime: Theta(n ^ 2) for all cases.
- * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+ * <p>Runtime: All cases: T(n) = Theta(n ^ 2).
+ * @see ComparisonSort
  * @see io.github.wangyuxiang0829.algorithms.sort.MergeSort
  * @see io.github.wangyuxiang0829.algorithms.sort.InsertionSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.SelectionSort
  * @param <T> the type of the elements to be sorted
  */
-public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
+public class BubbleSort<T extends Comparable<T>> implements ComparisonSort<T> {
     private T[] A;
     private boolean isSorted = false;
 
@@ -52,7 +50,7 @@ public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
 
     /**
      * <p>Brief: Implement the abstract method in the interface {@link
-     * io.github.wangyuxiang0829.algorithms.sort.Sort Sort}.
+     * ComparisonSort ComparisonSort}.
      * <p>Loop invariant:
      * <blockquote>
      *     <p>Inner for loop: At the start of each iteration, the element
@@ -82,7 +80,7 @@ public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
 
     /*
     public static void main(String[] args) {
-        Sort<Integer> sort = new BubbleSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        ComparisonSort<Integer> sort = new BubbleSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
         System.out.println(java.util.Arrays.toString(sort.sort()));
     }*/
 

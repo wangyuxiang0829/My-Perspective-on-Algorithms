@@ -2,7 +2,7 @@ package io.github.wangyuxiang0829.algorithms.sort;
 
 import io.github.wangyuxiang0829.datastructures.MaxHeap;
 
-public class HeapSort<T extends Comparable<T>> extends MaxHeap<T> implements Sort<T> {
+public class HeapSort<T extends Comparable<T>> extends MaxHeap<T> implements ComparisonSort<T> {
     public HeapSort(T[] A) {
         super(A);
     }

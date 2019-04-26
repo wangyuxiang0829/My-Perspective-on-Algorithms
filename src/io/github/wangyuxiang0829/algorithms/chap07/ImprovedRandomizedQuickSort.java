@@ -93,7 +93,7 @@ public class ImprovedRandomizedQuickSort<T extends Comparable<T>> extends Random
 
     /*
     public static void main(String[] args) {
-        Sort<Integer> sort = new ImprovedRandomizedQuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
+        ComparisonSort<Integer> sort = new ImprovedRandomizedQuickSort<>(new Integer[]{1, 3, 2, 5, 4, 7, 9, 8, 6});
         System.out.println(java.util.Arrays.toString(sort.sort()));
     }*/
 

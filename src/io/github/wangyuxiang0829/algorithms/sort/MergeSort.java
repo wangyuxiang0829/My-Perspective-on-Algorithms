@@ -3,25 +3,27 @@ package io.github.wangyuxiang0829.algorithms.sort;
 import java.lang.reflect.Array;
 
 /**
- * <p>Brief: MergeSort implements the interface {@link io.github.wangyuxiang0829.algorithms.sort.Sort
- * Sort} and can sort an array of any {@link java.lang.Comparable Comparable} type T.
+ * <p>Brief: MergeSort implements the interface {@link ComparisonSort ComparisonSort}
+ * and can sort an array of any {@link java.lang.Comparable Comparable} type T.
  * <p>Algorithm(divide-and-conquer):
  * <blockquote>
  *     <p>Divide: Divide the n-element sequence to be sorted into two
  *     sub sequences of n/2 elements each.
- *     <p>Conquer: Sort the two sub sequences recursively using merge
- *     sort.
+ *     <p>Conquer: Recursively sort the two sub sequences using merge
+ *     sort, when the size of sub sequence is less than or equal to
+ *     1, just return because it is sorted.
  *     <p>Combine: Merge the two sorted sub sequences to produce the
  *     sorted answer.
  * </blockquote>
  * <p>Runtime: All cases: T(n) = Theta(nlg(n))
- * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+ * @see HeapSort
+ * @see InsertionSort
+ * @see RandomizedQuickSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.BubbleSort
- * @see io.github.wangyuxiang0829.algorithms.sort.InsertionSort
  * @see io.github.wangyuxiang0829.algorithms.chap02.SelectionSort
  * @param <T> the type of the elements to be sorted
  */
-public class MergeSort<T extends Comparable<T>> implements Sort<T> {
+public class MergeSort<T extends Comparable<T>> implements ComparisonSort<T> {
     private T[] A;
     private Class<T> tClass;
     private boolean isSorted = false;
@@ -82,9 +84,9 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
         try {
 
-            for (; k < r || k == r; k++) {
+            for (; k <= r ; k++) {
 
-                if (L[i].compareTo(R[j]) < 0 || L[i].compareTo(R[j]) == 0) {
+                if (L[i].compareTo(R[j]) <= 0) {
                     A[k] = L[i++];
                 }
                 else {
@@ -95,7 +97,7 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
         } catch (ArrayIndexOutOfBoundsException e) {
 
-            if (i > n1 || i == n1) {
+            if (i >= n1) {
                 System.arraycopy(R, j, A, k, r - k + 1);
             }
             else {
@@ -134,15 +136,16 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
 
 
     /**
-     * <p>Brief: Implement the abstract method in the interface Sort.
-     * @see io.github.wangyuxiang0829.algorithms.sort.Sort
+     * <p>Brief: Implement the abstract method in the interface ComparisonSort.
+     * @see ComparisonSort#sort()
      * @return the sorted array
      */
     public T[] sort() {
 
         if (!isSorted) {
-            mergeSort(0, A.length - 1);
             isSorted = true;
+
+            mergeSort(0, A.length - 1);
         }
 
         return A;
