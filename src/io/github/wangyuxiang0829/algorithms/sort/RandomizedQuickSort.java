@@ -32,7 +32,7 @@ public class RandomizedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
 
 
-    protected int randomizedPartition(int p, int r) {
+    public int randomizedPartition(int p, int r) {
         exchange(random(p, r), p);
 
         return partition(p, r);
