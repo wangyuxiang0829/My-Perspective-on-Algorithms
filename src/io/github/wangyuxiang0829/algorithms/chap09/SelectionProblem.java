@@ -11,8 +11,8 @@ package io.github.wangyuxiang0829.algorithms.chap09;
  * @param <T> the type of element in the set A
  */
 public abstract class SelectionProblem<T extends Comparable<T>> {
-    T[] A;
-    int i;
+    final T[] A;
+    final int i;
 
     SelectionProblem(T[] A, int i) {
         if (i < 1 || i > A.length)
