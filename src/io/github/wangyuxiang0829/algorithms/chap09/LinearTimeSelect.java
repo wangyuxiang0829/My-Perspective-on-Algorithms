@@ -221,11 +221,26 @@ public class LinearTimeSelect<T extends Comparable<T>> extends SelectionProblem<
             A[trueIndex(falseIndex2)] = tmp;
         }
 
+        @Override
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("[ ");
+            for (T x : this)
+                stringBuilder.append(x).append(" ");
+            stringBuilder.append("]");
+            return stringBuilder.toString();
+        }
     }
 
     /*
     public static void main(String[] args) {
         System.out.println(new LinearTimeSelect<Integer>(new Integer[]{0, 2, 1, 4, 3, 5, 6, 10, 8, 9, 7}, 4).getOrderStatistic());
+    }*/
+
+    /*
+    public static void main(String[] args) {
+        LinearTimeSelect<Integer> select = new LinearTimeSelect<>(new Integer[]{1, 2, 3, 4, 5, 6, 7}, 2);
+        System.out.println(select.new AbstractArray(0, 6, 2));
     }*/
 
 }
