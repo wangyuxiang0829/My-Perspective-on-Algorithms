@@ -52,3 +52,8 @@ Because this is the java implementation for CLRS, so I try to use some features 
 ## Status
 
 * **Keep Updating ...**
+
+---
+
+## For More Information
+[wangyuxiang0829](https://wangyuxiang0829.github.io)
