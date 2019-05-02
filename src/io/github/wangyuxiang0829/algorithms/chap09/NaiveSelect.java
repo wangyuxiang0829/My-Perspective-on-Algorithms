@@ -1,6 +1,6 @@
 package io.github.wangyuxiang0829.algorithms.chap09;
 
-import io.github.wangyuxiang0829.algorithms.sort.HeapSort;
+import io.github.wangyuxiang0829.algorithms.chap06.HeapSort;
 
 public class NaiveSelect<T extends Comparable<T>> extends SelectionProblem<T> {
     private HeapSort<T> heapSort;

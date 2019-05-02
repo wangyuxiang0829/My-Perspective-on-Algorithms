@@ -1,8 +1,6 @@
 package io.github.wangyuxiang0829.algorithms.chap07;
 
-import io.github.wangyuxiang0829.algorithms.sort.InsertionSort;
-import io.github.wangyuxiang0829.algorithms.sort.RandomizedQuickSort;
-
+import io.github.wangyuxiang0829.algorithms.chap02.InsertionSort;
 
 /**
  * <p>Brief: Improve the running time of {@link RandomizedQuickSort RandomizedQuickSort}

@@ -1,6 +1,6 @@
 package io.github.wangyuxiang0829.algorithms.chap09;
 
-import io.github.wangyuxiang0829.algorithms.sort.RandomizedQuickSort;
+import io.github.wangyuxiang0829.algorithms.chap07.RandomizedQuickSort;
 
 /**
  * <p>Brief: Selection in expected linear time.

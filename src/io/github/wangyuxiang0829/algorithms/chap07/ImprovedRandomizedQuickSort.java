@@ -1,8 +1,5 @@
 package io.github.wangyuxiang0829.algorithms.chap07;
 
-import io.github.wangyuxiang0829.algorithms.sort.RandomizedQuickSort;
-
-
 /**
  * <p>7-5
  * <p>Brief: Improve the {@link RandomizedQuickSort RandomizedQuickSort} by partition

@@ -1,11 +1,10 @@
 package testsort;
 
-import io.github.wangyuxiang0829.algorithms.sort.ComparisonSort;
-import io.github.wangyuxiang0829.algorithms.sort.CountingSort;
-import io.github.wangyuxiang0829.algorithms.sort.LinearTimeSort;
-import io.github.wangyuxiang0829.util.*;
-import io.github.wangyuxiang0829.algorithms.divideandconquer.*;
-
+import io.github.wangyuxiang0829.algorithms.chap02.ComparisonSort;
+import io.github.wangyuxiang0829.algorithms.chap07.QuickSort;
+import io.github.wangyuxiang0829.algorithms.chap08.CountingSort;
+import io.github.wangyuxiang0829.algorithms.chap08.LinearTimeSort;
+import io.github.wangyuxiang0829.util.myio.In;
 
 import java.time.Duration;
 import java.time.Instant;
