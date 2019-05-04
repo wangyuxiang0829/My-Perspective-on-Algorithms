@@ -46,15 +46,17 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
 
-    private Node get(E element) {
+    private Node get(E element) throws NoSuchElementException {
         Node x = sentinel.next;
         while (x != sentinel && !x.key.equals(element))
             x = x.next;
+        if (x == sentinel)
+            throw new NoSuchElementException();
         return x;
     }
 
 
-    public void delete(E element) {
+    public void delete(E element) throws NoSuchElementException {
         Node node = get(element);
         node.prev.next = node.next;
         node.next.prev = node.prev;
@@ -121,7 +123,16 @@ public class MyLinkedList<E> implements Iterable<E> {
         MyLinkedList<Integer> list = new MyLinkedList<>();
         for (int i = 0; i < 10; i++)
             list.insert(i);
-        list.delete(Integer.valueOf(4));
+        try {
+            list.delete(Integer.valueOf(4));
+        } catch (NoSuchElementException e) {
+            System.out.println("no such integer 4");
+        }
+        try {
+            list.delete(Integer.valueOf(10));
+        } catch (NoSuchElementException e) {
+            System.out.println("no such integer 10");
+        }
         System.out.println(list);
         System.out.println(list.getLength());
     }*/
