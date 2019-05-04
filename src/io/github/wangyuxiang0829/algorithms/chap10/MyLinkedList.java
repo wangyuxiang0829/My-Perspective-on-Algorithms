@@ -3,73 +3,88 @@ package io.github.wangyuxiang0829.algorithms.chap10;
 import java.util.Iterator;
 
 public class MyLinkedList<E> implements Iterable<E> {
-    private Node head;
+    private Node sentinel;
     private int length;
 
+
     public MyLinkedList() {
-        head = null;
+        sentinel = new Node(null, null, null);
+        sentinel.prev = sentinel;
+        sentinel.next = sentinel;
         length = 0;
     }
 
-    public MyLinkedList(E element) {
-        head = new Node(null, element, null);
-        length = 1;
-    }
 
     public boolean isEmpty() {
-        return head == null;
+        return sentinel.next == sentinel;
     }
+
 
     public void insert(E element) {
+        Node node = new Node(sentinel, element, sentinel.next);
+        sentinel.next.prev = node;
+        sentinel.next = node;
         length++;
-        Node node = new Node(null, element, head);
-        if (head != null)
-            head.prev = node;
-        head = node;
     }
+
+
+    private Node get(int index) {
+        if (index < 0 || index >= length)
+            throw new LinkedListIndexOutOfBoundsException();
+        Node x = sentinel.next;
+        for (int i = 0; i < index; i++)
+            x = x.next;
+        return x;
+    }
+
 
     public void delete(int index) {
+        Node node = get(index);
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
         length--;
-        Node node = head;
-        for (int i = 0; i < index; i++) {
-            node = node.next;
-        }
-        if (node.prev != null)
-            node.prev.next = node.next;
-        else
-            head = node.next;
-        if (node.next != null)
-            node.next.prev = node.prev;
     }
 
-    public E search(int index) {
-        Node node = head;
-        for (int i = 0; i < index; i++) {
-            node = node.next;
-        }
-        return node.key;
+
+    private Node get(E element) {
+        Node x = sentinel.next;
+        while (x != sentinel && !x.key.equals(element))
+            x = x.next;
+        return x;
     }
+
+
+    public void delete(E element) {
+        Node node = get(element);
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+        length--;
+    }
+
+
+    public E search(int index) {
+        return get(index).key;
+    }
+
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
-            private Node current = head;
+            private Node current = sentinel;
 
             @Override
             public boolean hasNext() {
-                return current != null;
+                return current.next != sentinel;
             }
 
             @Override
             public E next() {
-                try {
-                    return current.key;
-                } finally {
-                    current = current.next;
-                }
+                current = current.next;
+                return current.key;
             }
         };
     }
+
 
     @Override
     public String toString() {
@@ -106,7 +121,7 @@ public class MyLinkedList<E> implements Iterable<E> {
         MyLinkedList<Integer> list = new MyLinkedList<>();
         for (int i = 0; i < 10; i++)
             list.insert(i);
-        list.delete(0);
+        list.delete(Integer.valueOf(4));
         System.out.println(list);
         System.out.println(list.getLength());
     }*/
