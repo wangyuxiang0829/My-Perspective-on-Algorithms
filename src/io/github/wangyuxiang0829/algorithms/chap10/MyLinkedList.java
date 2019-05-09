@@ -11,7 +11,6 @@ public class MyLinkedList<E> implements Iterable<E> {
         sentinel = new Node(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
-        length = 0;
     }
 
 
@@ -28,7 +27,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
 
-    private Node get(int index) {
+    public Node search(int index) {
         if (index < 0 || index >= length)
             throw new LinkedListIndexOutOfBoundsException();
         Node x = sentinel.next;
@@ -39,33 +38,25 @@ public class MyLinkedList<E> implements Iterable<E> {
 
 
     public void delete(int index) {
-        Node node = get(index);
+        Node node = search(index);
         node.prev.next = node.next;
         node.next.prev = node.prev;
         length--;
     }
 
 
-    private Node get(E element) throws NoSuchElementException {
-        Node x = sentinel.next;
-        while (x != sentinel && !x.key.equals(element))
-            x = x.next;
-        if (x == sentinel)
-            throw new NoSuchElementException();
-        return x;
+    public void delete(Node node) {
+        if (node.getLinkedList() != this)
+            throw new IllegalArgumentException("this node isn't in this LinkedList");
+        else {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+        }
     }
 
 
-    public void delete(E element) throws NoSuchElementException {
-        Node node = get(element);
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        length--;
-    }
-
-
-    public E search(int index) {
-        return get(index).key;
+    public E get(int index) {
+        return search(index).key;
     }
 
 
@@ -100,19 +91,33 @@ public class MyLinkedList<E> implements Iterable<E> {
         return stringBuilder.toString();
     }
 
+
     public int getLength() {
         return length;
     }
 
-    private class Node {
-        Node prev;
-        E key;
-        Node next;
+
+    public class Node {
+        private Node prev;
+        private E key;
+        private Node next;
+
 
         Node(Node prev, E element, Node next) {
             this.prev = prev;
             this.key = element;
             this.next = next;
+        }
+
+
+        MyLinkedList<E> getLinkedList() {
+            return MyLinkedList.this;
+        }
+
+
+        @Override
+        public String toString() {
+            return key.toString();
         }
 
     }
@@ -121,20 +126,15 @@ public class MyLinkedList<E> implements Iterable<E> {
     /*
     public static void main(String[] args) {
         MyLinkedList<Integer> list = new MyLinkedList<>();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++) {
             list.insert(i);
-        try {
-            list.delete(Integer.valueOf(4));
-        } catch (NoSuchElementException e) {
-            System.out.println("no such integer 4");
         }
-        try {
-            list.delete(Integer.valueOf(10));
-        } catch (NoSuchElementException e) {
-            System.out.println("no such integer 10");
-        }
+        System.out.println(list);
+        System.out.println(list.get(0));
+        list.delete(1);
         System.out.println(list);
         System.out.println(list.getLength());
     }*/
+
 
 }
