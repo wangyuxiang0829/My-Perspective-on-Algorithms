@@ -9,7 +9,7 @@ public class MyHashMap<K, V> {
 
     @SuppressWarnings("unchecked")
     public MyHashMap() {
-        hashTable = (MyLinkedList<TwoTuple<K,V>>[]) new MyLinkedList[13];
+        hashTable = (MyLinkedList<TwoTuple<K, V>>[]) new MyLinkedList<?>[13];
         for (int i = 0; i < 13; i++)
             hashTable[i] = new MyLinkedList<>();
     }
@@ -18,35 +18,37 @@ public class MyHashMap<K, V> {
     public void insert(K key, V value) throws KeyAlreadyExistException {
         if (search(key) != null)
             throw new KeyAlreadyExistException();
+
         hashTable[key.hashCode() % 13].insert(new TwoTuple<>(key, value));
     }
 
 
     public V search(K key) {
+
         for (TwoTuple<K, V> keyValue : hashTable[key.hashCode() % 13]) {
             if (keyValue.first.equals(key)) {
                 return keyValue.second;
             }
         }
+
         return null;
     }
 
 
+    @SuppressWarnings("unchecked")
     public void delete(K key) throws NoSuchKeyException {
-        int i = 0;
-        boolean flag = false;
-        for (TwoTuple<K, V> keyValue : hashTable[key.hashCode() % 13]) {
-            if (keyValue.first.equals(key)) {
-                flag = true;
+        MyLinkedList<TwoTuple<K, V>> slot = hashTable[key.hashCode() % 13];
+        MyLinkedList.Node node = slot.getSentinel().getNext();
+        for (TwoTuple<K, V> keyValue : slot) {
+            if (keyValue.first.equals(key))
                 break;
-            }
             else
-                i++;
+                node = node.getNext();
         }
-        if (flag)
-            hashTable[key.hashCode() % 13].delete(i);
-        else
+        if (node == slot.getSentinel())
             throw new NoSuchKeyException();
+        else
+            slot.delete(node);
     }
 
 
@@ -64,27 +66,13 @@ public class MyHashMap<K, V> {
     /*
     public static void main(String[] args) {
         MyHashMap<String, Integer> hashTable = new MyHashMap<>();
-        try {
-            hashTable.insert("Jack", 78);
-        } catch (KeyAlreadyExistException e) {
-            System.out.println("key \"Jack\" already exist");
-        }
-        try {
-            hashTable.insert("Ming", 84);
-        } catch (KeyAlreadyExistException e) {
-            System.out.println("key \"Ming\" already exist");
-        }
-        try {
-            hashTable.insert("Jack", 56);
-        } catch (KeyAlreadyExistException e) {
-            System.out.println("Key \"Jack\" already exist");
-        }
+        hashTable.insert("Jack", 78);
+        hashTable.insert("Ming", 84);
+        // hashTable.insert("Jack", 56);
         System.out.println(hashTable.search("Jack"));
-        try {
-            hashTable.delete("Jac");
-        } catch (NoSuchKeyException e) {
-            System.out.println("no such key \"Jac\"");
-        }
+        // hashTable.delete("Lucy");
+        hashTable.insert("Lucy", 93);
+        hashTable.delete("Ming");
         System.out.println(hashTable);
     }*/
 
