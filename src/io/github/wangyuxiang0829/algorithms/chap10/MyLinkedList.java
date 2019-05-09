@@ -3,7 +3,7 @@ package io.github.wangyuxiang0829.algorithms.chap10;
 import java.util.Iterator;
 
 public class MyLinkedList<E> implements Iterable<E> {
-    private Node sentinel;
+    private final Node sentinel;
     private int length;
 
 
@@ -19,6 +19,11 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
 
+    public Node getSentinel() {
+        return sentinel;
+    }
+
+
     public void insert(E element) {
         Node node = new Node(sentinel, element, sentinel.next);
         sentinel.next.prev = node;
@@ -27,7 +32,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
 
-    public Node search(int index) {
+    private Node search(int index) {
         if (index < 0 || index >= length)
             throw new LinkedListIndexOutOfBoundsException();
         Node x = sentinel.next;
@@ -118,6 +123,16 @@ public class MyLinkedList<E> implements Iterable<E> {
         @Override
         public String toString() {
             return key.toString();
+        }
+
+
+        public Node getPrev() {
+            return prev;
+        }
+
+
+        public Node getNext() {
+            return next;
         }
 
     }
