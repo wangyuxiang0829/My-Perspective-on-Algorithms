@@ -3,52 +3,74 @@ package io.github.wangyuxiang0829.algorithms.chap11;
 import io.github.wangyuxiang0829.algorithms.chap10.MyLinkedList;
 import io.github.wangyuxiang0829.util.tuple.TwoTuple;
 
-public class MyHashMap<K, V> {
+public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
     private MyLinkedList<TwoTuple<K, V>>[] hashTable;
 
 
     @SuppressWarnings("unchecked")
-    public MyHashMap() {
+    public MyChainingHashTable() {
+
         hashTable = (MyLinkedList<TwoTuple<K, V>>[]) new MyLinkedList<?>[13];
+
         for (int i = 0; i < 13; i++)
             hashTable[i] = new MyLinkedList<>();
+
     }
 
 
-    public void insert(K key, V value) throws KeyAlreadyExistException {
-        if (search(key) != null)
+    @Override
+    public void insert(K KEY, V VALUE) throws KeyAlreadyExistException {
+
+        if (search(KEY) != null)
             throw new KeyAlreadyExistException();
 
-        hashTable[key.hashCode() % 13].insert(new TwoTuple<>(key, value));
+        hashTable[KEY.hashCode() % 13].insert(new TwoTuple<>(KEY, VALUE));
+
     }
 
 
-    public V search(K key) {
+    @Override
+    public V search(K KEY) {
 
-        for (TwoTuple<K, V> keyValue : hashTable[key.hashCode() % 13]) {
-            if (keyValue.first.equals(key)) {
+        for (TwoTuple<K, V> keyValue : hashTable[KEY.hashCode() % 13]) {
+
+            if (keyValue.first.equals(KEY)) {
                 return keyValue.second;
             }
+
         }
 
         return null;
+
     }
 
 
+    @Override
     @SuppressWarnings("unchecked")
-    public void delete(K key) throws NoSuchKeyException {
-        MyLinkedList<TwoTuple<K, V>> slot = hashTable[key.hashCode() % 13];
+    public void delete(K KEY) throws NoSuchKeyException {
+
+        MyLinkedList<TwoTuple<K, V>> slot = hashTable[KEY.hashCode() % 13];
+
         MyLinkedList.Node node = slot.getSentinel().getNext();
+
         for (TwoTuple<K, V> keyValue : slot) {
-            if (keyValue.first.equals(key))
+
+            if (keyValue.first.equals(KEY)) {
                 break;
-            else
+            }
+            else {
                 node = node.getNext();
+            }
+
         }
-        if (node == slot.getSentinel())
+
+        if (node == slot.getSentinel()) {
             throw new NoSuchKeyException();
-        else
+        }
+        else {
             slot.delete(node);
+        }
+
     }
 
 
@@ -65,7 +87,7 @@ public class MyHashMap<K, V> {
 
     /*
     public static void main(String[] args) {
-        MyHashMap<String, Integer> hashTable = new MyHashMap<>();
+        MyHashTable<String, Integer> hashTable = new MyChainingHashTable<>();
         hashTable.insert("Jack", 78);
         hashTable.insert("Ming", 84);
         // hashTable.insert("Jack", 56);
