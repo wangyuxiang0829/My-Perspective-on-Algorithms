@@ -17,10 +17,10 @@ public class Out {
     /**
      * Constructor
      * Construct the Out object that write to a file
-     * @param sourceFileName the name of the file to be written to
+     * @param filePath the path of the file to be written to
      */
-    public Out(String sourceFileName) {
-        File file = new File(sourceFileName);
+    public Out(String filePath) {
+        File file = new File(filePath);
         try {
              if (!file.exists()) {
                  boolean b = file.createNewFile();

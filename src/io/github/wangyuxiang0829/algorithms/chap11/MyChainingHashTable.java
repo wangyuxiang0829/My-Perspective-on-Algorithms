@@ -1,19 +1,36 @@
 package io.github.wangyuxiang0829.algorithms.chap11;
 
+import static io.github.wangyuxiang0829.algorithms.chap11.HashFunctions.*;
 import io.github.wangyuxiang0829.algorithms.chap10.MyLinkedList;
 import io.github.wangyuxiang0829.util.tuple.TwoTuple;
+import java.math.BigInteger;
+import java.util.Random;
 
+/**
+ *
+ * @param <K>
+ * @param <V>
+ */
 public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
-    private MyLinkedList<TwoTuple<K, V>>[] hashTable;
+    private static final int RANDOM_INT = new Random().nextInt();
+    private MyLinkedList<TwoTuple<K, V>>[] slots;
+
+
+
+    public MyChainingHashTable() {
+
+        this(BigInteger.probablePrime(5, new Random()).intValueExact());
+
+    }
 
 
     @SuppressWarnings("unchecked")
-    public MyChainingHashTable() {
+    public MyChainingHashTable(int m) {
 
-        hashTable = (MyLinkedList<TwoTuple<K, V>>[]) new MyLinkedList<?>[13];
+        slots = (MyLinkedList<TwoTuple<K,V>>[]) new MyLinkedList<?>[m];
 
-        for (int i = 0; i < 13; i++)
-            hashTable[i] = new MyLinkedList<>();
+        for (int i = 0; i < slots.length; i++)
+            slots[i] = new MyLinkedList<>();
 
     }
 
@@ -24,7 +41,7 @@ public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
         if (search(KEY) != null)
             throw new KeyAlreadyExistException();
 
-        hashTable[KEY.hashCode() % 13].insert(new TwoTuple<>(KEY, VALUE));
+        slots[universalHashing(KEY.hashCode(), slots.length, new Random(RANDOM_INT))].insert(new TwoTuple<>(KEY, VALUE));
 
     }
 
@@ -32,7 +49,7 @@ public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
     @Override
     public V search(K KEY) {
 
-        for (TwoTuple<K, V> keyValue : hashTable[KEY.hashCode() % 13]) {
+        for (TwoTuple<K, V> keyValue : slots[universalHashing(KEY.hashCode(), slots.length, new Random(RANDOM_INT))]) {
 
             if (keyValue.first.equals(KEY)) {
                 return keyValue.second;
@@ -49,9 +66,9 @@ public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
     @SuppressWarnings("unchecked")
     public void delete(K KEY) throws NoSuchKeyException {
 
-        MyLinkedList<TwoTuple<K, V>> slot = hashTable[KEY.hashCode() % 13];
+        MyLinkedList<TwoTuple<K, V>> slot = slots[universalHashing(KEY.hashCode(), slots.length, new Random(RANDOM_INT))];
 
-        MyLinkedList.Node node = slot.getSentinel().getNext();
+        MyLinkedList.Node node = slot.sentinel.getNext();
 
         for (TwoTuple<K, V> keyValue : slot) {
 
@@ -64,7 +81,7 @@ public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
 
         }
 
-        if (node == slot.getSentinel()) {
+        if (node == slot.sentinel) {
             throw new NoSuchKeyException();
         }
         else {
@@ -78,7 +95,7 @@ public class MyChainingHashTable<K, V> implements MyHashTable<K, V> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (MyLinkedList<TwoTuple<K, V>> linkedList : hashTable)
+        for (MyLinkedList<TwoTuple<K, V>> linkedList : slots)
             stringBuilder.append(linkedList).append("\n");
 
         return stringBuilder.toString();

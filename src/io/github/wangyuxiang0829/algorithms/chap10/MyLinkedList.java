@@ -3,7 +3,7 @@ package io.github.wangyuxiang0829.algorithms.chap10;
 import java.util.Iterator;
 
 public class MyLinkedList<E> implements Iterable<E> {
-    private final Node sentinel;
+    public final Node sentinel;
     private int length;
 
 
@@ -16,11 +16,6 @@ public class MyLinkedList<E> implements Iterable<E> {
 
     public boolean isEmpty() {
         return sentinel.next == sentinel;
-    }
-
-
-    public Node getSentinel() {
-        return sentinel;
     }
 
 
