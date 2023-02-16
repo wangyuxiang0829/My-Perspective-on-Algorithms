@@ -1,6 +1,6 @@
 # My-Perspective-on-Algorithms
 ## Description
-![CLRS](https://upload.wikimedia.org/wikipedia/en/4/41/Clrs3.jpeg)
+![CLRS](https://camo.githubusercontent.com/8e9e095fcc03a1ecea6363a3a29135bfeb0fa96ba7f5688859361333723dfee7/68747470733a2f2f692e696d6775722e636f6d2f4553776a4b61522e706e67)
 * This repository contains the Java implementation for CLRS book whose name is Introduction to Algorithms
 * The implementation not contains the mathematical proof in the book
 
